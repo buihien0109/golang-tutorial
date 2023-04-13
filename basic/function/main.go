@@ -27,6 +27,11 @@ func main() {
 
 	_, perimeter2 := rectPropsWithName(5.4, 6.4)
 	fmt.Println(perimeter2)
+
+	Hello("Bùi Hiên", 1, 2, 3, 4, 5)
+
+	Find(1, 2, 3, 4, 1, 5, 1)
+	Find(10, 2, 3, 4, 1, 5, 1)
 }
 
 func sum(a, b int) int {
