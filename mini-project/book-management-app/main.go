@@ -12,7 +12,7 @@ func main() {
 	app := iris.New()
 
 	// Load the template files.
-	tmpl := iris.HTML("./resources/views", ".html")
+	tmpl := iris.HTML("./resources/views", ".html").Reload(true)
 	app.RegisterView(tmpl)
 
 	// Serve templates with "tmpl" as the primary one.

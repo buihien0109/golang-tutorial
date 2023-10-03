@@ -12,6 +12,7 @@ require (
 	github.com/aymerick/douceur v0.2.0 // indirect
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/flosch/pongo2/v4 v4.0.2 // indirect
+	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/gomarkdown/markdown v0.0.0-20230922112808-5421fefb8386 // indirect
 	github.com/google/uuid v1.3.1 // indirect
@@ -22,6 +23,7 @@ require (
 	github.com/kataras/golog v0.1.9 // indirect
 	github.com/kataras/iris/v12 v12.2.7 // indirect
 	github.com/kataras/pio v0.0.12 // indirect
+	github.com/kataras/rizla v0.1.1 // indirect
 	github.com/kataras/sitemap v0.0.6 // indirect
 	github.com/kataras/tunnel v0.0.4 // indirect
 	github.com/klauspost/compress v1.17.0 // indirect
