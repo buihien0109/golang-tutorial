@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết book</title>
+    <link rel="stylesheet" href="/assets/lib/bootstrap/bootstrap.min.css"/>
+</head>
+<body>
+<header class="container">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">BOOK STORE</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Danh sách book</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/books/create">Tạo book</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <button class="mb-4 btn btn-danger" id="btn-delete">Xóa</button>
+                <div class="bg-light p-4">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" name="title" class="form-control" id="title"
+                               value="{{.Book.Title}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea name="description" class="form-control" id="description"
+                                  rows="3">{{.Book.Description}}"</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="author" class="form-label">Author</label>
+                        <input type="text" name="author" class="form-control" id="author"
+                               value="{{.Book.Author}}">
+                    </div>
+                    <button class="btn btn-primary" id="btn-update">Cập nhật</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    let book = {{.Book}};
+    console.log(book);
+
+
+    const btnUpdate = document.getElementById('btn-update');
+    btnUpdate.addEventListener('click', function () {
+        const title = document.getElementById('title').value;
+        const description = document.getElementById('description').value;
+        const author = document.getElementById('author').value;
+        const data = {
+            title: title,
+            description: description,
+            author: author
+        }
+        console.log(data)
+        fetch(`/api/v1/books/${book.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+        }).then(function (response) {
+            return response.json();
+        }).then(function (response) {
+            const {status} = response
+            if (status === 200) {
+                alert('Cập nhật book thành công');
+            } else {
+                alert('Cập nhật book thất bại');
+            }
+        }).catch(function (error) {
+            console.log(error)
+        });
+    });
+
+    // Xóa book
+    const btnDelete = document.getElementById('btn-delete');
+    btnDelete.addEventListener('click', function () {
+        const isConfirm = confirm('Bạn có chắc chắn muốn xóa book này không?');
+        if (!isConfirm) {
+            return;
+        }
+
+        fetch(`/api/v1/books/${book.id}`, {
+            method: 'DELETE',
+        }).then(function (response) {
+            return response.json();
+        }).then(function (response) {
+            const {status} = response
+            if (status === 200) {
+                alert('Xóa book thành công');
+                window.location.href = '/';
+            } else {
+                alert('Xóa book thất bại');
+            }
+        }).catch(function (error) {
+            console.log(error)
+        });
+    });
+</script>
+</body>
+</html>

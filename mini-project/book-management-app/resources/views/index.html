@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách book</title>
+    <link rel="stylesheet" href="/assets/lib/bootstrap/bootstrap.min.css"/>
+</head>
+<body>
+<header class="container">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">BOOK STORE</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Danh sách book</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/books/create">Tạo book</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th style="width: 10%">ID</th>
+                        <th style="width: 25%">Title</th>
+                        <th style="width: 45%">Description</th>
+                        <th style="width: 20%">Author</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{range .BookList}}
+                    <tr>
+                        <td>{{.ID}}</td>
+                        <td><a href="/books/{{.ID}}/detail">{{.Title}}</a></td>
+                        <td>{{.Description}}</td>
+                        <td>{{.Author}}</td>
+                    </tr>
+                    {{end}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
