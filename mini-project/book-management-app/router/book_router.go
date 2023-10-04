@@ -6,7 +6,7 @@ import (
 	"github.com/kataras/iris/v12"
 )
 
-// set up router for application
+// SetupRouter set up router for application
 func SetupRouter(app *iris.Application) {
 	// View
 	app.Get("/", controller.GetBookHomePage)

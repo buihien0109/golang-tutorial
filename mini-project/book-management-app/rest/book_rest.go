@@ -47,8 +47,8 @@ func GetBookById(ctx iris.Context) {
 }
 
 func CreateBook(ctx iris.Context) {
-	var request request.UpsertBookRequest
-	err := ctx.ReadJSON(&request)
+	var bookRequest request.UpsertBookRequest
+	err := ctx.ReadJSON(&bookRequest)
 	if err != nil {
 		ctx.JSON(response.Error{
 			Status:  http.StatusBadRequest,
@@ -56,7 +56,7 @@ func CreateBook(ctx iris.Context) {
 		})
 		return
 	}
-	book := service.CreateBook(request)
+	book := service.CreateBook(bookRequest)
 	err = ctx.JSON(response.Success{
 		Status:  http.StatusCreated,
 		Message: "create book success",
@@ -68,8 +68,8 @@ func CreateBook(ctx iris.Context) {
 }
 
 func UpdateBookById(ctx iris.Context) {
-	var request request.UpsertBookRequest
-	err := ctx.ReadJSON(&request)
+	var bookRequest request.UpsertBookRequest
+	err := ctx.ReadJSON(&bookRequest)
 	if err != nil {
 		ctx.JSON(response.Error{
 			Status:  http.StatusBadRequest,
@@ -87,7 +87,7 @@ func UpdateBookById(ctx iris.Context) {
 		return
 	}
 
-	book, err := service.UpdateBookById(id, request)
+	book, err := service.UpdateBookById(id, bookRequest)
 	if err != nil {
 		ctx.JSON(response.Error{
 			Status:  http.StatusBadRequest,
